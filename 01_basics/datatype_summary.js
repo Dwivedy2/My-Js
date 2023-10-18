@@ -24,7 +24,7 @@ let mathValue = 44n
 // Symbol
 let uniqueId = Symbol('12')
 
-console.log('uniqueId', uniqueId);
+// console.log('uniqueId', uniqueId);
 
 // Reference Data Types : Arrays, Objects, Functions
 
@@ -44,11 +44,42 @@ let heroCharacter = {
     }
 }
 
-console.log('Characters of hero', heroCharacter);
+// console.log('Characters of hero', heroCharacter);
 
 // Functions
 let average = function() {
     return (5 + 6 + 4) / 3
 }
 
-console.log('average = ', typeof average); // average = function
+// console.log('average = ', typeof average); // average = function
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+// Memory distribution
+// Primitive (Stack) -- Copy of actual
+// Reference (Heap) -- Actual reference
+
+// Primitive - Stack - Copy
+let username = "Omkareshwar"
+let firstName = username
+
+// change second value i.e copy of first value
+firstName = "Anil"
+
+// No effect on its original value, by change in the second value
+// console.log("username: ", username) // Omkareshwar
+// console.log("firstname: ", firstName) // Anil
+
+// Reference - Heap - Actual
+let house = {
+    colorCode: "Yellow",
+    count: 53
+}
+
+let ramanHouse = house
+
+ramanHouse.colorCode = "Red"
+
+// Value is changed for both the variables
+// console.log('house', house) // { colorCode: 'Red', count: 53 }
+// console.log('ramanHouse', ramanHouse) // { colorCode: 'Red', count: 53 }
