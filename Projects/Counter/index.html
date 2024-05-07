@@ -79,20 +79,32 @@
     let counter = 0;
 
     // events
-    decrease.addEventListener('click', () => {
-        counter--;
-        totalCount.innerHTML = counter;
+    decrease.addEventListener('click', (e) => {
+        updateCounter(e.target.id)
     });
 
-    reset.addEventListener('click', () => {
-        counter = 0;
-        totalCount.innerHTML = counter;
+    reset.addEventListener('click', (e) => {
+        updateCounter(e.target.id)
     });
 
-    increase.addEventListener('click', () => {
-        counter++;
-        totalCount.innerHTML = counter;
+    increase.addEventListener('click', (e) => {
+        updateCounter(e.target.id)
     });
+
+    function updateCounter(id) {
+        switch(id) {
+            case 'decrease': 
+                counter--;
+                break;
+            case 'reset':
+                counter = 0;
+                break;
+            case 'increase': 
+                counter++;
+                break;
+        }
+        totalCount.innerHTML = counter;
+    }
 
 </script>
 
