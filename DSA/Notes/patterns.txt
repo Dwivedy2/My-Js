@@ -1,0 +1,7 @@
+pattern problem, general guideline
+
+Step 1: for the outer loop count no. of rows
+Step 2: for the inner loop, focus on the columns &
+        connect with the rows
+Step 3: print them in inner for loop
+Step 4: observe symmetry (optional)
