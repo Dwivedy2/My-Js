@@ -446,7 +446,7 @@ function pattern18(n) {
 
     0 - i print chars
 
-    (i-1) to 0 print chars
+    (i-2) to 0 print chars
 */
 function pattern19(n) {
     for(let i = 1; i <= n; i++) {
@@ -457,12 +457,18 @@ function pattern19(n) {
             sp += ' ';
         }
 
-        // chars
+        // increasing chars
         let char = 65;
-        let ptn = '';
+        let ptn = sp;
         for(let j = 0; j < i; j++) {
-            
+            ptn += String.fromCharCode(char + j);
         }
+
+        // decreasing chars
+        for(let j = (i - 2); j >= 0; j--) {
+            ptn += String.fromCharCode(char + j);
+        }
+        console.log(ptn);
     }
 }
 
@@ -483,4 +489,5 @@ function pattern19(n) {
 // pattern15(11);
 // pattern16(11);
 // pattern17(5);
-pattern18(5);
+// pattern18(5);
+pattern19(5);
