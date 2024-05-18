@@ -3,18 +3,17 @@ const addBtn = document.getElementById('addNote');
 const noteArea = document.getElementById('note-area');
 const NOTES_KEY = 'notes';
 
-// array to store data
-const notes = [];
-
 // Init function
 initNotes();
 
+// Events
 addBtn.addEventListener('click', addNote);
 
 noteArea.addEventListener('click', deleteNote);
 
 noteArea.addEventListener('click', saveNote);
 
+// UI
 function addNote(note) {
     // create wrapper divs
     const noteDiv = document.createElement('div');
@@ -45,20 +44,17 @@ function deleteNote(e) {
     if(e.target.className.includes('delete')) {
         let noteToRemove = e.target.parentNode.parentNode;
         let textNote = noteToRemove.querySelector('textarea');
-        let index = notes.indexOf(textNote.value);
-        if(index != -1) {
-            notes.splice(index, 1);
+        let localNotes = getFromLocalStorage(NOTES_KEY);
+        if(localNotes) {
+            let noteArr = localNotes.split(',');
+            let index = noteArr.indexOf(textNote.value.trim());
+            if(index != -1) {
+                noteArea.removeChild(noteToRemove);
+                noteArr.splice(index, 1);
+                localNotes = noteArr.join(',');
+                deleteFromLocal(localNotes);
+            }
         }
-        setTimeout(() => {
-            clearLocalStorage();
-        }, 1000);
-        if(notes.length) {
-            console.log(notes);
-            setTimeout(() => {
-                saveToLocalStorage(NOTES_KEY, notes);
-            }, 1000);
-        }
-        noteArea.removeChild(noteToRemove);
     }
 }
 
@@ -67,28 +63,35 @@ function saveNote(e) {
         let note = e.target.parentNode.parentNode;
         let textNote = note.querySelector('textarea');
         
-        // get from local storage
-        let notesFromLocal = getFromLocalStorage(NOTES_KEY);
-        notesFromLocal = notesFromLocal ? notesFromLocal.split(',') : [];
-        
-        // save
-        textNote.value && notesFromLocal.push(textNote.value);
-        saveToLocalStorage(NOTES_KEY, notesFromLocal);
+        if(textNote.value.trim()) {
+            // get from local storage
+            let notesFromLocal = getFromLocalStorage(NOTES_KEY);
+            if(notesFromLocal) {
+                notesFromLocal += ',';
+            } 
+            notesFromLocal += textNote.value.trim();
+    
+            // save
+            saveToLocalStorage(NOTES_KEY, notesFromLocal);
+        }
     }
 }
 
+// DB
 function saveToLocalStorage(key, value) {
     localStorage.setItem(key, value);
 }
 
-function clearLocalStorage(key) {
-    localStorage.clear();
+function deleteFromLocal(value) {
+    localStorage.removeItem(NOTES_KEY);
+    saveToLocalStorage(NOTES_KEY, value);
 }
 
 function getFromLocalStorage(key) {
     return localStorage.getItem(key);
 }
 
+// Init
 function initNotes() {
     let localStorageData = getFromLocalStorage(NOTES_KEY);
     if(localStorageData) {
