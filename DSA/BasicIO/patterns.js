@@ -472,6 +472,115 @@ function pattern19(n) {
     }
 }
 
+/**
+ * E
+ * D E
+ * C D E
+ * B C D E
+ * A B C D E
+ */
+function pattern20(n) {
+    // outer
+    for(let i = 1; i <= n; i++) {
+
+        let char = 65;
+        let ptn = '';
+        for(let j = n - i; j < n; j++) {
+            ptn += String.fromCharCode(char + j) + ' ';
+        }
+
+        console.log(ptn);
+    }
+}
+
+/*
+    * * * * * * * * * *
+    * * * *     * * * *
+    * * *         * * *
+    * *             * *
+    *                 *
+    *                 *
+    * *             * *
+    * * *         * * *
+    * * * *     * * * *
+    * * * * * * * * * *
+*/
+/**
+ * Logic:
+ * outer : i = 0 : n
+ * Divide into 4 quads
+ * 1.
+ * 1 to n - i times '*'
+ * 
+ * spaces(upper)
+ * i = 0: 0 sp
+ * i = 1: 2 sp
+ * i = 2: 4 sp
+ * i = 3: 6 sp
+ * i = 4: 8 sp
+ * 
+ * spaces(lower)
+ * i = 0: 8 sp ( 2*(n - i - 1) )
+ * i = 1: 6 sp
+ * i = 2: 4 sp
+ */
+function pattern21(n) {
+    // outer(upper)
+    for(let i = 0; i < n; i++) {
+
+        let sp = '';
+        let ptn = '';
+
+        // 1st quadrant
+        // star
+        for(let j = 1; j <= (n-i); j++) {
+            ptn += '* ';
+        }
+
+        // spaces
+        for(let j = 0; j < 2*i; j++) {
+            sp += '  ';
+        }
+
+        ptn += sp;
+
+        // 2nd quadrant
+        // star
+        for(let j = 1; j <= (n-i); j++) {
+            ptn += '* ';
+        }
+
+        console.log(ptn);
+    }
+    // outer(lower)
+    for(let i = 0; i < n; i++) {
+
+        let sp = '';
+        let ptn = '';
+
+        // 3rd quadrant
+        // star
+        for(let j = 0; j <= i; j++) {
+            ptn += '* ';
+        }
+
+        // spaces
+        for(let j = 0; j < 2 * (n - i - 1); j++) {
+            sp += '  ';
+        }
+
+        ptn += sp;
+
+        // 4th quadrant
+        // star
+        for(let j = 0; j <= i; j++) {
+            ptn += '* ';
+        }
+
+        console.log(ptn);
+    }
+}
+
 // pattern1(15);
 // pattern2(15);
 // pattern3(10);
@@ -490,4 +599,6 @@ function pattern19(n) {
 // pattern16(11);
 // pattern17(5);
 // pattern18(5);
-pattern19(5);
+// pattern19(5);
+// pattern20(5);
+pattern21(15);
