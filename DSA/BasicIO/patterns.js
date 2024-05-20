@@ -653,6 +653,64 @@ function pattern22(n) {
     }
 }
 
+/*
+    * * * *
+    *     *
+    *     *
+    * * * *
+*/
+
+function pattern23(n) {
+    // outer
+    for(let i = 0; i < n; i++) {
+        let ptn = '';
+        for(let j = 0; j < n; j++) {
+            if(i == 0 || j == 0 || i == n - 1 || j == n - 1) {
+                ptn += '* ';
+            } else {
+                ptn += '  ';
+            }
+        }
+        console.log(ptn);
+    }
+}
+
+/*
+       0:1:2:3:4:5:6
+    0: 4 4 4 4 4 4 4
+    1: 4 3 3 3 3 3 4
+    2: 4 3 2 2 2 3 4
+    3: 4 3 2 1 2 3 4
+    4: 4 3 2 2 2 3 4
+    5: 4 3 3 3 3 3 4
+    6: 4 4 4 4 4 4 4
+*/
+/**
+ * Logic
+ * n - curr = new matrix
+ * curr = min(min(top_dist, bottom_dist) - min(right_dist, left_dist))
+ * top_dist = i
+ * left_dist = j
+ * right_dist = 2*n - 2 - j
+ * bottom_dist = 2*n - 2 - i
+ */
+
+function pattern24(n) {
+    // outer
+    for(let i = 0; i < (2*n - 1); i++) {
+        let ptn = '';
+        for(let j = 0; j < (2*n - 1); j++) {
+            let top = i;
+            let left = j;
+            let right = 2*n - 2 - j;
+            let bottom = 2*n - 2 - i;
+
+            ptn += n - Math.min(Math.min(top, bottom), Math.min(left, right));
+        }
+        console.log(ptn);
+    }
+}
+
 // pattern1(15);
 // pattern2(15);
 // pattern3(10);
@@ -675,3 +733,5 @@ function pattern22(n) {
 // pattern20(5);
 // pattern21(15);
 // pattern22(20)
+// pattern23(5);
+pattern24(5)
