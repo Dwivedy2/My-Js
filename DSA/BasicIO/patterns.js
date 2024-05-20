@@ -581,6 +581,78 @@ function pattern21(n) {
     }
 }
 
+/*
+    *                 *
+    * *             * *
+    * * *         * * *
+    * * * *     * * * *
+    * * * * * * * * * *
+    * * * *     * * * *
+    * * *         * * *
+    * *             * *
+    *                 *
+*/
+/**
+ * Logic: 
+ * spaces(upper)
+ * i = 0: 16 sp (4 * (n - i - 1))
+ * i = 1: 12 sp
+ * i = 2: 8 sp
+ * i = 3: 4 sp
+ * i = 4: 0 sp
+ * spaces(lower)
+ * i = 0: 0 sp (4 * i)
+ * i = 1: 4 sp
+ * i = 2: 8 sp
+ * i = 3: 12 sp
+ * i = 4: 16 sp
+ */
+
+function pattern22(n) {
+    // outer(upper) 
+    for(let i = 0; i < n; i++) {
+
+        let ptn = '';
+        // stars
+        for(let j = 0; j <= i; j++) {
+            ptn += '* ';
+        }
+
+        // spaces
+        for(let j = 0; j <= (4 * (n - i - 1)); j++) {
+            ptn += ' ';
+        }
+
+        // stars
+        for(let j = 0; j <= i; j++) {
+            ptn += '* ';
+        }
+
+        console.log(ptn);
+    }
+    // outer(lower)
+    for(let i = 1; i < n; i++) {
+
+        let ptn = '';
+        // stars
+        for(let j = 1; j <= (n - i); j++) {
+            ptn += '* ';
+        }
+
+        // spaces
+        for(let j = 0; j <= (4 * i); j++) {
+            ptn += ' ';
+        }
+
+        // stars
+        for(let j = 1; j <= (n - i); j++) {
+            ptn += '* ';
+        }
+
+        console.log(ptn);
+    }
+}
+
 // pattern1(15);
 // pattern2(15);
 // pattern3(10);
@@ -601,4 +673,5 @@ function pattern21(n) {
 // pattern18(5);
 // pattern19(5);
 // pattern20(5);
-pattern21(15);
+// pattern21(15);
+// pattern22(20)
