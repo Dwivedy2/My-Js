@@ -207,6 +207,9 @@ function explainVectorJs() {
 
         ls.push_front(3); // IMP: operation is cheaper than insert in Vector
         ls.emplace_front(); {1, 2}
+
+        // rest function same as vector
+        // begin, end, rend, rbegin, size, clear, insert, swap
     }
 */
 
@@ -219,3 +222,26 @@ function explainListJs() {
     ls.shift(); 
 }
 
+//  DEQUEUE (Similar to list)
+
+// CODE IN C++
+/*
+    function explainDequeu() {
+        dequeue<int> dq;
+
+        dq.push_back(1); // {1}
+        dq.emplace_back(2); // {1, 2}
+        dq.push_front(3); // {3, 1, 2}
+        dq.emplace_front(4); // {4, 3, 1, 2}
+
+        dq.pop_back(); // {4, 3, 1}
+        dq.pop_front(); // {3, 1}
+
+        dq.back();
+        dq.front();
+
+        // rest function same as vector
+        // begin, end, rend, rbegin, size, clear, insert, swap
+    }
+
+*/
