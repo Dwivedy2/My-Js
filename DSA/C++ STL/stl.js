@@ -193,4 +193,29 @@ function explainVectorJs() {
     console.log(v.length === 0); // true
 }
 
-explainVectorJs();
+
+//  LIST
+
+// CODE IN C++
+/*
+    void explainList() {
+        // internally doubly ll
+        list<int> ls;
+
+        ls.push_back(1);
+        ls.emplace_back(2);
+
+        ls.push_front(3); // IMP: operation is cheaper than insert in Vector
+        ls.emplace_front(); {1, 2}
+    }
+*/
+
+function explainListJs() {
+    let ls = [2, 5, 3];
+
+    ls.push(1);
+
+    ls.unshift(6);
+    ls.shift(); 
+}
+
