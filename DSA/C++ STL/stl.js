@@ -245,3 +245,60 @@ function explainListJs() {
     }
 
 */
+
+//  STACK
+
+// CODE IN C++
+/*
+    // TIME COMPLEXITY: Push, Pop, Top - O(1)
+
+    function explainStack() {
+        stack<int> st;
+
+        st.push(1); // {1}
+        st.push(2); // {1, 2}
+        st.push(3); // {1, 2, 3}
+        st.push(3); // {1, 2, 3, 3}
+        st.emplace(5); // {1, 2, 3, 3, 5}
+
+        cout << st.top(); // 5 "** st[2] is invalid **"
+
+        st.pop();
+
+        cout << st.top(); // 3
+
+        cout << st.size(); // 4
+
+        cout << st.empty(); // false
+
+        stack<int>st1, st2;
+        st1.swap(st2);
+    }
+
+*/
+
+function explainStackJs() {
+    let st = [];
+
+    st.push(1);
+    st.push(2);
+    st.push(3);
+    st.push(3);
+    st.push(5);
+
+    console.log(st[st.length - 1]); // 5
+
+    st.pop();
+
+    console.log(st[st.length - 1]); // 3
+    console.log(st.length); // 4
+    console.log(st.length == 0);
+
+    let st1 = [];
+    let st2 = [];
+
+    [st1, st2] = [st2, st1];
+
+}
+
+explainStackJs();
