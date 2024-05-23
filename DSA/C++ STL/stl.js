@@ -301,4 +301,52 @@ function explainStackJs() {
 
 }
 
-explainStackJs();
+//  QUEUE
+
+// CODE IN C++
+/*
+    // TIME COMPLEXITY: Push, Pop, Top - O(1)
+
+    function explainQueue() {
+        queue<int> q;
+
+        q.push(1); // {1}
+        q.push(2); // {1, 2}
+        q.emplace(4); // {1, 2, 4}
+
+        q.back() += 5; // 9
+
+        cout << q.back() << endl; // 9
+
+        cout << q.front() << endl; // 1
+
+        q.pop(); // 1
+
+        cout << q.front() << endl; // 2
+
+        // size, empty, swap same as stack
+    }
+
+*/
+
+function explainQueueJs() {
+
+    // queue
+    let q = [];
+
+    q.push(1);
+    q.push(2);
+    q.push(4);
+
+    q[q.length - 1] += 5;
+
+    console.log(q[q.length - 1]); // 9
+
+    console.log(q[0]); // 1
+
+    q.splice(0, 1);
+
+    console.log(q[0]);
+}
+
+explainQueueJs();
