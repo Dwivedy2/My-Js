@@ -349,4 +349,47 @@ function explainQueueJs() {
     console.log(q[0]);
 }
 
-explainQueueJs();
+//  PRIORITY QUEUE
+
+// CODE IN C++
+/*
+    // TIME COMPLEXITY: Push, Pop - log(n), Top - O(1)
+
+    // INTERNAL IMPLEMENTATION AS 
+
+    function explainPriorityQueue() {
+        
+        // Maximum Heap: larger always at top
+
+        priority_queue<int> pq;
+
+        pq.push(2); // {2}
+        pq.push(5); // {5, 2}
+        pq.push(8); // {8, 5, 2}
+        pq.push(4); // {8, 5, 4, 2}
+
+        cout << pq.top(); // 8
+
+        pq.pop(); // 8
+
+        cout << pq.top(); // 5
+
+        // size, empty, swap same as stack
+
+        // Minimum Heap: smaller at top
+
+        priority_queue<int, vector<int>, greater<int>> pq;
+
+        pq.push(2); // {2}
+        pq.push(5); // {2, 5}
+        pq.push(8); // {2, 5, 8}
+        pq.push(4); // {2, 4, 5, 8}
+
+        cout << pq.top(); // 2
+
+        pq.pop(); // 2
+
+        cout << pq.top(); // 4
+    }
+
+*/
