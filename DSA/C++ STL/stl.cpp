@@ -8,6 +8,20 @@ void printVector(vector<int> v) {
     cout << endl;
 }
 
+void printVector(list<int> v) {
+    for(auto it: v) {
+        cout << it << " ";
+    }
+    cout << endl;
+}
+
+void printVector(deque<int> v) {
+    for(auto it: v) {
+        cout << it << " ";
+    }
+    cout << endl;
+}
+
 void explainPair() {
     pair<int, int> p = {1, 3};
 
@@ -101,8 +115,120 @@ void explainVector() {
     cout << v.empty() << endl; // true
 }
 
+void explainList() {
+    // internally implemented as doubly ll
+    list<int> ls;
+
+    ls.push_back(1);
+    ls.emplace_back(2); // fast
+
+    ls.push_front(3); // faster than insert in vector
+    ls.emplace_front(4);
+
+    printVector(ls);
+
+    // rest function same as vector
+    // begin, end, rend, rbegin, size, clear, insert, swap
+}
+
+void explainDequeue() {
+    deque<int> dq;
+
+    dq.push_back(1);
+    dq.emplace_back(2); // fast
+
+    dq.push_front(3); // faster than insert in vector
+    dq.emplace_front(7);
+
+    printVector(dq);
+
+    // rest function same as vector
+    // begin, end, rend, rbegin, size, clear, insert, swap
+}
+
+void explainStack() {
+    // LIFO
+    // TIME COMPLEXITY: Push, Pop, Top - O(1)
+    stack<int> st;
+
+    st.push(1); // {1}
+    st.push(2); // {2, 1}
+    st.push(3); // {3, 2, 1}
+    st.emplace(4); // {4, 3, 2, 1}
+
+    cout << st.top() << endl; // 4
+
+    st.pop(); // 4
+
+    cout << st.top() << endl; // 3
+
+    cout << st.size() << endl; // 3
+
+    cout << st.empty() << endl; // false
+
+    stack<int> st1;
+    st1.swap(st);
+
+    cout << st1.top() << endl; // 3
+}
+
+void explainQueue() {
+    // FIFO
+    // TIME COMPLEXITY: Push, Pop, Top - O(1)
+    queue<int> q;
+
+    q.push(1);
+    q.push(3);
+    q.emplace(5);
+
+    q.back() += 5; // 10
+
+    cout << q.back() << endl; // 10
+
+    cout << q.front() << endl; // 1
+
+    q.pop(); // 1
+
+    cout << q.front() << endl; // 3
+
+    // size, empty, swap same as stack
+}
+
+void explainPriorityQueue() {
+    // MAX HEAP: Tree DS inside
+    // Max always at top
+    // TIME COMPLEXITY: Push, Pop -> O(logn), Top -> O(1)
+    priority_queue<int> pq;
+
+    pq.push(3); // {3}
+    pq.push(2); // {3, 2}
+    pq.push(5); // {5, 3, 2}
+    pq.push(4); // {5, 4, 3, 2}
+
+    cout << pq.top() << endl; // 5
+
+    pq.pop();
+
+    cout << pq.top() << endl; // 4
+
+    // size, empty, swap same as stack
+
+    // Minimum Heap: smaller at top
+    priority_queue<int, vector<int>, greater<int>> qp;
+    qp.push(5); // {5}
+    qp.push(3); // {3, 5}
+    qp.push(6); // {3, 5, 6}
+    qp.push(2); // {2, 3, 5, 6}
+
+    cout << qp.top() << endl; // 2
+
+    qp.pop();
+
+    cout << qp.top() << endl; // 3
+    
+}
 
 int main() {
-    explainVector();
+    explainPriorityQueue();
     return 0;
 }

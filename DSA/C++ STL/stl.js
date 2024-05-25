@@ -208,7 +208,7 @@ function explainVectorJs() {
         ls.push_front(3); // IMP: operation is cheaper than insert in Vector
         ls.emplace_front(); {1, 2}
 
-        // rest function same as vector
+        
         // begin, end, rend, rbegin, size, clear, insert, swap
     }
 */
