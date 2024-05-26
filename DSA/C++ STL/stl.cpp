@@ -22,6 +22,13 @@ void printVector(deque<int> v) {
     cout << endl;
 }
 
+void printVector(set<int> v) {
+    for(auto it: v) {
+        cout << it << " ";
+    }
+    cout << endl;
+}
+
 void explainPair() {
     pair<int, int> p = {1, 3};
 
@@ -228,7 +235,70 @@ void explainPriorityQueue() {
     
 }
 
+void explainSet() {
+    // Unique + Sorted
+    // TIME COMPLEXITY: O(logn)
+    set<int> s;
+    s.insert(1); // {1}
+    s.insert(2); // {1, 2}
+    s.insert(3); // {1, 2, 3}
+    s.insert(3); // {1, 2, 3}
+    s.insert(3); // {1, 2, 3}
+    s.insert(4); // {1, 2, 3, 4}
+    s.emplace(0); // {0, 1, 2, 3, 4}
+
+    // printVector(s);
+
+    // Functionality of insert in vector
+    // can be used also, that only increase the 
+    // efficience
+
+    // begin(), rbegin(), end(), rend(), size(),
+    // empty(), swap() those of above
+
+    // Find
+    auto sIt = s.find(3); // 3
+    sIt = s.find(9); // s.end()
+
+    cout << *sIt << endl;
+
+    sIt = s.find(3); // 3 
+
+    // Erase
+    s.erase(sIt); // takes constant time
+
+    s.erase(1); // takes logarithmic time
+
+    s.insert(4);
+    s.insert(3);
+    s.insert(6); // {0, 2, 3, 4, 6}
+
+    auto beginIt = s.find(2);
+    auto endIt = s.find(4);
+
+    s.erase(beginIt, endIt); // {0, 4, 6}
+
+    int cnt = s.count(2); // 1
+
+    // lower_bound and upper_bound works in the same ways as in 
+    // vector it does, O(logn)
+
+    // it works the same as binary search, if the element is found then the
+    // iterator is returned pointing to that element, 
+    // if not found then an iterator is returned which is just greater than the 
+    // element
+    auto lIt = s.lower_bound(6); // 6
+
+    // it works the same as binary search, if the element is found or not an
+    // iterator is returned pointing to the immediate greater than the element
+    auto uIt = s.upper_bound(4); // 6
+
+    printVector(s);
+
+    cout << *lIt << " " << *uIt << endl;
+}
+
 int main() {
-    explainPriorityQueue();
+    explainSet();
     return 0;
 }
