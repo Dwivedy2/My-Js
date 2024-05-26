@@ -29,6 +29,13 @@ void printVector(set<int> v) {
     cout << endl;
 }
 
+void printVector(multiset<int> v) {
+    for(auto it: v) {
+        cout << it << " ";
+    }
+    cout << endl;
+}
+
 void explainPair() {
     pair<int, int> p = {1, 3};
 
@@ -298,7 +305,29 @@ void explainSet() {
     cout << *lIt << " " << *uIt << endl;
 }
 
+void explainMultiSet() {
+    // Only Sorted
+    // TIME COMPLEXITY: O(logn)
+    multiset<int> ms;
+
+    ms.insert(1); // {1}
+    ms.insert(1); // {1, 1}
+    ms.insert(1); // {1, 1, 1}
+
+    ms.erase(1); // {}
+
+    ms = {1, 1, 1, 1, 1};
+
+    multiset<int>::iterator begin = ms.find(1);
+    ms.erase(begin); // {1, 1, 1, 1}
+    ms = {1, 1, 1, 1};
+    auto it = ms.find(1);
+    begin = it;
+    begin++;
+    begin++;
+    ms.erase(it, begin); // {1, 1}
+}
 int main() {
-    explainSet();
+    explainMultiSet();
     return 0;
 }
