@@ -1,6 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void printVector(int *a, int n) {
+    for(int i = 0; i < n; i++) {
+        cout << a[i] << " ";
+    }
+    cout << endl;
+}
+
+void printVector(pair<int, int> *arr, int n) {
+    for(int i = 0; i < n; i++) {
+        cout << arr[i].first << " " << arr[i].second << endl;
+    }
+}
+
 void printVector(vector<int> v) {
     for(auto it: v) {
         cout << it << " ";
@@ -381,7 +394,59 @@ void explainUnorderedMap() {
     // Keys are unique, not sorted
 }
 
+bool comp(pair<int, int> p1, pair<int, int> p2) {
+    if(p1.second < p2.second) return true;
+    else if(p1.second > p2.second) return false;
+    else if(p1.first > p2.first) return true;
+    else return false;
+}
+
+void algorithms() {
+    int a[] = {1, 2, 4, 3, 5};
+    int n = sizeof(a) / sizeof(a[0]);
+
+    vector<int> v = {1, 4, 3, 2, 5};
+
+    sort(a, a+n);
+    sort(v.begin(), v.end());
+
+    sort(a+2, a+4); // {1, 2, 3, 4, 5}
+    // decending
+    sort(a, a+n, greater<int>()); // {5, 4, 3, 2, 1} 
+    
+    pair<int, int> arr[] = {{1, 2}, {2, 1}, {4, 1}};
+    int n1 = sizeof(arr) / sizeof(arr[0]);
+
+    // Till now sort was used to sort in ascending or decending order
+    // but, we can use it to sort according to our way, lets see how
+
+    // Here sort it according to the second element like {{4, 1}, {1, 2}, {2, 1}},
+    // if the second is same for both the pairs then sort on the basis of their first,
+    // but in decending like {{4, 1}, {2, 1}, {1, 2}}
+    sort(arr, arr+n1, comp);
+    
+    int num = 6; // bits = 110
+    cout << __builtin_popcount(num) << endl; // sei bits - 2
+
+    long long num2 = 123456789123;
+    cout << __builtin_popcountll(num2) << endl; // set bits - 19
+
+    // print all permutation
+    string s = "321";
+    sort(s.begin(), s.end());
+
+    do {
+        cout << s << endl;
+    } while (next_permutation(s.begin(), s.end()));
+    
+    // maximum element in an array
+    int nums[] = {1, 10, 2, 3, 15, 25, 20, 15};
+    n = sizeof(nums) / sizeof(nums[0]);
+    cout << *max_element(nums, nums+n) << endl;
+    cout << *min_element(nums, nums+n) << endl;
+}
+
 int main() {
-    explainMap();
+    algorithms();
     return 0;
 }
