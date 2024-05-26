@@ -326,7 +326,25 @@ void explainMultiSet() {
     begin++;
     begin++;
     ms.erase(it, begin); // {1, 1}
+
+    // rest all function are same
 }
+
+void explainUnorderedSet() {
+    // Only Unique
+    // TIME COMPLEXITY: In most of the cases it is O(1), but if
+    // there is worst case scenerio where the data is passed intentionally
+    // in such a condition that it wants to behave abrubtly, then it is O(N)
+    unordered_set<int> us;
+
+    // lower_bound and upper_bound does not works here,
+    // rest all the function are same as set. It does not stores
+    // data in a particular order or sorted order. It has better time complexity
+    // than set in most cases, except some when collision happens
+}
+
+
+
 int main() {
     explainMultiSet();
     return 0;
