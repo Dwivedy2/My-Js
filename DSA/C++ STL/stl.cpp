@@ -36,6 +36,12 @@ void printVector(multiset<int> v) {
     cout << endl;
 }
 
+void printVector(map<int, int> mp) {
+    for(auto it: mp) {
+        cout << it.first << " " << it.second << endl;
+    }
+}
+
 void explainPair() {
     pair<int, int> p = {1, 3};
 
@@ -343,9 +349,39 @@ void explainUnorderedSet() {
     // than set in most cases, except some when collision happens
 }
 
+void explainMap() {
+    // Everything is stored in {Key, Value}
+    // Key is always "sorted" and "unique"
+    map<int, int> mp;
+    map<int, pair<int, int>> mp1;
+    map<pair<int, int>, int> mp2;
 
+    mp[1] = 2; // {{1, 2}}
+    mp.emplace(3, 1); // {{1, 2}, {3, 1}}
+    mp.insert({2, 4}); // {{1, 2}, {2, 4}, {3, 1}}
+    mp2[{4, 5}] = 10; // {{{4, 5}, 10}}
+
+    cout << mp[1] << endl; // 2
+    cout << mp[4] << endl; // 0, '4' as a key is not found
+
+    map<int, int>::iterator it = mp.find(2);
+
+    auto lb = mp.lower_bound(2);
+    auto ub = mp.upper_bound(4);
+
+    // erase, size, swap, empty are same as above
+}
+
+void explainMultiMap() {
+    // Keys are only sorted, no unique
+    // map[key] cannot be used here
+}
+
+void explainUnorderedMap() {
+    // Keys are unique, not sorted
+}
 
 int main() {
-    explainMultiSet();
+    explainMap();
     return 0;
 }
