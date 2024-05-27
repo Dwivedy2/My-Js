@@ -1,6 +1,15 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+// UTIL
+void printVector(vector<int> v) {
+    for(auto it: v) {
+        cout << it << " ";
+    }
+    cout << endl;
+}
+
+// MAIN
 void countDigits() {
     int n = 1234;
     int cnt = 0;
@@ -60,6 +69,64 @@ bool isPalindrome(int x) {
     return rev == x;
 }
 
+bool isArmstrong(int x) {
+    // TODO: Check whether a number x is armstrong or not
+    // 374: cube(3) + cube(7) + cube(4) = 374 so yes
+    // 1634: fourth(1) + fourth(6) + fourth(3) + fourth(4) = 1634 so yes
+    // 35: square(3) + square(5) = 152 != 35 so no
+
+    int n = x;
+    int sum = 0;
+    int p = log10(x) + 1;
+    while(n) {
+        int d = n % 10;
+        sum += pow(d, p);
+        n = n / 10;
+    }
+    return x == sum;
+}
+
+vector<int> getDivisors(int x) {
+    // TODO: print all the divisors of x
+    // 36: 1, 2, 3, 4, 6, 9, 12, 18, 36
+
+    // TC: O(N)
+    vector<int> result;
+    // for(int d = 1; d <= x; d++) {
+    //     if(x % d == 0) result.push_back(d);
+    // }
+
+    // Optimised
+    // Approach
+    // 1 * 36
+    // 2 * 18
+    // 3 * 12
+    // 4 * 9
+    // 6 * 6 -> this is nothing but sqrt(36) = 6 * 6
+    // 9 * 4 -> from here it is reverse replica of above, so we can ignore looping
+    // 12 * 3
+    // 18 * 2
+    // 36 * 1
+    
+    // Here not used sqrt(x) as on each d it is called
+    // TC: O(sqrt(x))
+    for(int d = 1; d*d <= x; d++) {
+        if(x % d == 0) {
+            result.push_back(d);
+            if(d != (x / d))
+                result.push_back(x / d);
+        }
+    }
+
+    // Internal Sorting: O(n log(n)), n is the number of factors
+    sort(result.begin(), result.end());
+
+    // Print: O(n), n is the number of factors
+    return result;
+
+    // TC: O(x) + O(n log(n)) + O(n), where x = N, n = no. of factors of N
+}
+
 int main() {
     // countDigits();
 
@@ -70,7 +137,12 @@ int main() {
     // int n = 10;
     // cout << isPalindrome(n) << endl;
 
+    // 371, 1634, 35
+    // int n = 371;
+    // cout << isArmstrong(n) << endl;
 
+    // int n = 36;
+    // printVector(getDivisors(n));
 
     return 0;
 }
