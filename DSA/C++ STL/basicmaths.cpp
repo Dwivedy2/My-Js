@@ -28,6 +28,9 @@ void countDigits() {
 }
 
 int reverseDigit(int x) {
+    // TODO: reverse the digits in a number
+    // Here, reverse the digit, if the reversing of digit crosses 
+    // the lower and upper limit of integer data type then return 0
     int revN = 0;
     int num = x;
     while(num) {
@@ -39,13 +42,35 @@ int reverseDigit(int x) {
     return revN;
 }
 
+bool isPalindrome(int x) {
+    // TODO: Check if x is palindrome
+    // x: 121, true
+    // x: -121, false as -121 and 121- are not palindrome
+    // x: 10, false as 10 and 01 are not palindrome
+    // x > INT_MAX or x < INT_MIN return false
+    if(x < 0) return false;
+    int n = x;
+    int rev = 0;
+    while(n) {
+        int lastDigit = n % 10;
+        if(rev >= INT_MAX/10 || rev <= INT_MIN/10) return false;
+        rev = rev * 10 + lastDigit;
+        n = n / 10;
+    }
+    return rev == x;
+}
+
 int main() {
     // countDigits();
 
-    // Here, reverse the digit, if the reversing of digit crosses 
-    // the lower and upper limit of integer data type then return 0
-    int n = 123;
-    int output = reverseDigit(n);
-    cout << output << endl;
+    // int n = 123;
+    // int output = reverseDigit(n);
+    // cout << output << endl;
+
+    // int n = 10;
+    // cout << isPalindrome(n) << endl;
+
+
+
     return 0;
 }
