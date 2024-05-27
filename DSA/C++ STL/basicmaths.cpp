@@ -27,7 +27,25 @@ void countDigits() {
 
 }
 
+int reverseDigit(int x) {
+    int revN = 0;
+    int num = x;
+    while(num) {
+        int digit = num % 10;
+        if(revN > INT_MAX / 10 || revN < INT_MIN / 10) return 0;
+        revN = revN * 10 + digit;
+        num /= 10;
+    }
+    return revN;
+}
+
 int main() {
-    countDigits();
+    // countDigits();
+
+    // Here, reverse the digit, if the reversing of digit crosses 
+    // the lower and upper limit of integer data type then return 0
+    int n = 123;
+    int output = reverseDigit(n);
+    cout << output << endl;
     return 0;
 }
