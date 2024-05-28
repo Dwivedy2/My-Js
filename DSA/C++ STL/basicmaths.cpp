@@ -127,6 +127,33 @@ vector<int> getDivisors(int x) {
     // TC: O(x) + O(n log(n)) + O(n), where x = N, n = no. of factors of N
 }
 
+int getSumDivisors(int n) {
+    int sum = 0;
+    for(int d = 1; d*d <= n; d++) {
+        if(n % d == 0) {
+            sum += d;
+            int x = (n / d);
+            if(x != d) sum += x;
+        }
+    }
+    return sum;
+}
+
+int sumOfDivisors(int n) {
+    // TC: O(n * sqrt(n))
+    int sum = 0;
+    for(int c = 1; c <= n; c++) {
+        sum += getSumDivisors(c);
+    }
+
+    sum = 0;
+    // TC: O(n)
+    for(int i = 1;i <= n; i++){
+        sum += i * (n / i);
+    }
+    return sum;
+}
+
 int main() {
     // countDigits();
 
@@ -143,6 +170,11 @@ int main() {
 
     // int n = 36;
     // printVector(getDivisors(n));
+
+    // GFG Question
+    // Link: https://www.geeksforgeeks.org/problems/sum-of-all-divisors-from-1-to-n4738/1
+    int n = 4;
+    cout << sumOfDivisors(n) << endl;
 
     return 0;
 }
