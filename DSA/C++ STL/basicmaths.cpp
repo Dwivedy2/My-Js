@@ -154,6 +154,61 @@ int sumOfDivisors(int n) {
     return sum;
 }
 
+int minJumps(int a[], int n) {
+    int nextJump = 0;
+    int count = 0;
+    while(nextJump < n-1) {
+        nextJump = a[nextJump] + nextJump;
+        count++;
+    }
+    if(nextJump < n-1) return -1;
+    return count;
+}
+
+int getGCD(int a, int b) {
+    // Ex:
+    // 15, 20
+    // 15: 1, 3, 5, 15
+    // 20: 1, 2, 4, 5, 10, 20
+    // So here the maximum factor can be upto 15 as above it can divide 20 but not 15
+    
+    // Brute force: O(min(n1, n2))
+    int gcd = -1;
+    for(int i = 1; i <= min(a, b); i++) {
+        if((a % i) == 0 && (b % i) == 0) gcd = i;
+    }
+
+    // Euclidian Algorithm
+    // gcd(a, b) = gcd((a - b), b), where a > b
+    // Ex: 
+    // gcd(15, 20) = gcd(5, 20) = gcd((20 - 5), 5) = gcd(15, 5) = gcd(10, 5) = gcd(5, 5) = gcd(0, 5)
+    // so here we got gcd(0, 5) so at b is our gcd;
+
+    // Here this algorithm can take up much time as expected as shown below
+    //  gcd(52, 10) = gcd(42, 10), 1
+    //  gcd(52, 10) = gcd(32, 10), 2
+    //  gcd(52, 10) = gcd(22, 10), 3
+    //  gcd(52, 10) = gcd(12, 10), 4
+    //  gcd(52, 10) = gcd(2, 10), 5 (here, you can see that 5 = 52/10, and gcd(2, 10) = gcd((52 % 10), 10)
+    //  gcd(52, 10) = gcd(8, 2), 6
+    //  gcd(52, 10) = gcd(6, 2), 7
+    //  gcd(52, 10) = gcd(4, 2), 8
+    //  gcd(52, 10) = gcd(2, 2), 9
+    //  gcd(52, 10) = gcd(0, 2), 10
+    
+    //  so better algorithm is below
+    // gcd(a, b) = gcd(a % b, b), a > b
+
+    gcd = -1;
+    while(a > 0 && b > 0) {
+        if(a > b) a = a % b;
+        else b = b % a;
+    }
+    if(b == 0) gcd = a;
+    else gcd = b;
+    return gcd;
+}
+
 int main() {
     // countDigits();
 
@@ -173,8 +228,19 @@ int main() {
 
     // GFG Question
     // Link: https://www.geeksforgeeks.org/problems/sum-of-all-divisors-from-1-to-n4738/1
-    int n = 4;
-    cout << sumOfDivisors(n) << endl;
+    // int n = 4;
+    // cout << sumOfDivisors(n) << endl;
 
+    // GFG Question
+    // Link: https://www.geeksforgeeks.org/problems/minimum-number-of-jumps-1587115620/1
+    // int arr[] = {1, 3, 5, 8, 9, 2, 6, 7, 6, 8, 9};
+    // // int arr[] = {1, 4, 3, 2, 6, 7};
+    // int n = sizeof(arr) / sizeof(arr[0]);
+
+    // cout << minJumps(arr, n) << endl;
+
+    // GCD, HCF
+    int a = 52, b = 10;
+    cout << getGCD(a, b) << endl;
     return 0;
 }
