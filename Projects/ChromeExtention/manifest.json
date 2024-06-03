@@ -1,0 +1,13 @@
+{
+    "name": "Launch VS Code",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "content_scripts": [
+        {
+            "matches": ["https://github.com/*"],
+            "js": ["content.js"],
+            "run_at": "document_end"
+        }
+    ],
+    "permissions": ["activeTab"]
+}
