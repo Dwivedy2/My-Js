@@ -209,6 +209,20 @@ int getGCD(int a, int b) {
     return gcd;
 }
 
+int getLCM(int a, int b) {
+    // a = 5, b = 10
+    // m(5): 5, 10, 15, 20
+    // m(10): 10, 20, 30, 40
+
+    // a = 14, b = 8
+    // m(14): 14, 28, 42, 56
+    // m(8): 8, 16, 24, 32, 40, 48, 56
+    int lcm = -1;
+    int gcd = getGCD(a, b);
+    lcm = (a * b) / gcd;
+    return lcm;
+}
+
 int main() {
     // countDigits();
 
@@ -240,7 +254,11 @@ int main() {
     // cout << minJumps(arr, n) << endl;
 
     // GCD, HCF
-    int a = 52, b = 10;
-    cout << getGCD(a, b) << endl;
+    // int a = 52, b = 10;
+    // cout << getGCD(a, b) << endl;
+
+    // LCM
+    int a = 14, b = 8;
+    cout << getLCM(a, b) << endl;
     return 0;
 }
