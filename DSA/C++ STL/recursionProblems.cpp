@@ -93,6 +93,11 @@ bool isPalindrome(string s, int n, int i) {
     return isPalindrome(s, n-1, i+1);
 }
 
+int fibonacci(int n) {
+    if(n == 1 || n == 0) return n;
+    return fibonacci(n - 1) + fibonacci(n - 2);
+}
+
 int main() {
     
     // P1. Print your name n times
@@ -138,8 +143,12 @@ int main() {
 
     // P11. string palindrome ?
     string s = "12e21";
-    bool result = isPalindrome(s, s.length() - 1, 0);
-    cout << s << endl << result << endl;
+    // bool result = isPalindrome(s, s.length() - 1, 0);
+    // cout << s << endl << result << endl;
+
+    // P12. Fibonacci (multiple recursive calls)
+    int result = fibonacci(6);
+    cout << result << endl;
 
     return 0;
 }
