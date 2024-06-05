@@ -90,8 +90,7 @@ void reverseArr(int i, int arr[], int n) {
 bool isPalindrome(string s, int n, int i) {
     if(i >= n) return true;
     if(s[i] != s[n]) return false;
-    bool flag = isPalindrome(s, n-1, i+1);
-    return flag;
+    return isPalindrome(s, n-1, i+1);
 }
 
 int main() {
