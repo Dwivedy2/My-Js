@@ -147,6 +147,7 @@ int main() {
     // cout << s << endl << result << endl;
 
     // P12. Fibonacci (multiple recursive calls)
+    // TC: O(2^n) Exponential
     int result = fibonacci(6);
     cout << result << endl;
 
