@@ -365,6 +365,7 @@ void explainUnorderedSet() {
 void explainMap() {
     // Everything is stored in {Key, Value}
     // Key is always "sorted" and "unique"
+    // TC: O(logn), storing, fetching
     map<int, int> mp;
     map<int, pair<int, int>> mp1;
     map<pair<int, int>, int> mp2;

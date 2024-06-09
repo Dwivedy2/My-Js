@@ -1,0 +1,78 @@
+Collisions
+
+In unordered map
+
+BEST_CASE: O(1)
+AVERAGE_CASE: O(1)
+WORST_CASE: O(n) but rarely
+
+So why the worst case is like that?
+
+Due to collisions...
+
+What is collision ?
+    - Understand Division Method
+
+Division Method
+
+So lets have an array,
+arr[] = {1, 23, 32, 48, 139}
+
+So as when using array as hash, we can't cross 10^7 as array size globally
+so understand this on very small scale
+
+lets suppose we can't use array of more than 10 size, every frequency should be
+in bracket of 0 - 9
+
+so for above arr we will use Division Method
+
+foreach el in arr
+    hashh[el % 10]++
+
+
+so its like
+
+0 
+1 -> 1
+2 -> 32
+3 -> 23
+4
+5
+6
+7
+8 -> 48
+9 -> 139
+
+so here according to the remainder we found out the frequency
+
+But... ?
+
+What about this array?
+
+arr[] = {18, 28, 38, 18, 48, 58}
+
+0
+1
+2
+3
+4
+5
+6
+7
+8 -> 18 -> 18 -> 28 -> 38 -> 48 -> 58
+9
+
+So here when doing,
+18 % 10 = 8, stored at position 8
+    > 18
+28 % 10 = 8, so 18 is mapped to 8, but need to map 28 also so made linked list and did chaining
+    > 18 -> 28
+38
+    > 18 -> 28 -> 38
+18
+    > 18 -> 18 -> 28 -> 38
+
+and so on
+
+So now the worst case becomes O(n), where n is number of els in map
+
