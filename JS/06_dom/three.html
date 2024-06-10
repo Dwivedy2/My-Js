@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #212121; color: #fff;">
+    
+</body>
+<script>
+
+    let div = document.createElement('div')
+    div.id = Math.floor(Math.random() * 10 + 1)
+    div.className = "create-div"
+    console.log(div)
+    // <div id="5" class="create-div" title="new div" style="background-color: green; padding: 10px;">Created Div</div>
+    div.setAttribute("title", "new div")
+    div.style.backgroundColor = 'green'
+    div.style.padding = '10px'
+    
+    div.innerText = "Created Div"
+
+    // Or
+
+    const text = document.createTextNode('Created Another Div Text')
+    div.append(text)
+
+    // attach to dom
+    document.body.appendChild(div)
+</script>
+</html>

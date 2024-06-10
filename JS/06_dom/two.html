@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+</head>
+<body style="background-color: black; color: white;">
+    <div class="parent">
+        <!-- comment -->
+        <div class="day">Monday</div>
+        <div class="day">Tuesday</div>
+        <div class="day">Wednesday</div>
+        <div class="day">Thrusday</div>
+        <div class="day">Friday</div>
+    </div>
+</body>
+<script>
+    // using query selector is not a optimised approach
+    // as it traverses the whole window tree to find the selector
+    const parent = document.querySelector('.parent')
+    // console.log(parent);
+    // console.log(parent.children); // HTML Collection
+    // console.log(parent.children[1].innerText); // Tuesday
+
+    // for (let i = 0; i < parent.children.length; i++) {
+    //     console.log(parent.children[i].innerHTML);  
+    // }
+
+    // console.log(parent.firstElementChild) // <div class="day">Monday</div>
+
+    parent.firstElementChild.style.color = 'orange'
+    parent.lastElementChild.style.color = 'green'
+
+    let firstDay = parent.firstElementChild
+    // console.log(firstDay); // <div class="day" style="color: orange;">Monday</div>
+
+    // console.log(firstDay.parentElement); // <div class="parent">...</div>
+    // console.log(firstDay.nextElementSibling); // <div class="day">Tuesday</div>
+
+    // Concept of childNodes
+    console.log(parent.childNodes); // length 11, better to run and see output
+    // by adding a single comment see the length its 13
+
+</script>
+</html>

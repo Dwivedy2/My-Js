@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Start | Stop</title>
+</head>
+<body>
+    <h1>Start and Stop Printing</h1>
+    <button id="start">Start</button>
+    <button id="stop">Stop</button>
+    <div id="print"></div>
+</body>
+<script>
+    const startPrint = function(data) {
+        document.querySelector('#print').appendChild(document.createTextNode(data))
+    }
+
+    let interval = null
+    document.getElementById('start').addEventListener('click', function(){
+        interval = setInterval(startPrint, 1000, 'Hi');
+    })
+
+    document.getElementById('stop').addEventListener('click', function(){
+        clearInterval(interval)
+    })
+</script>
+</html>

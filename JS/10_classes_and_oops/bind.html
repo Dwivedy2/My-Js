@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bind in JS</title>
+</head>
+<body>
+    <button>Simple Button</button>
+</body>
+<script>
+
+    class React {
+        constructor() {
+            this.example = "Bind in JS";
+            this.serverUrl = "https://localhost:3000";
+
+            document
+                .querySelector('button')
+                .addEventListener('click', this.onClick().bind(this))
+        }
+
+        onClick() {
+            console.log('Button is clicked');
+            console.log('Reference url', this.serverUrl);
+            
+        }
+    }
+
+    const app = new React();
+</script>
+</html>

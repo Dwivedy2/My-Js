@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #212121;
+            color: #fff;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            font-size: larger;
+        }
+        .center {
+            height: 30px;
+            width: 140px;
+            background-color: orange;
+            margin-top: 1.5%;
+            border-radius: 3px;
+            border: 1px solid;
+            padding-top: 5px;
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <label>Local Time</label>
+        <div class="center"></div>
+    </div>
+
+<script>
+
+    setInterval(function(){
+        const date = new Date()
+        const center = document.querySelector('.center')
+        center.textContent = date.toLocaleTimeString()
+    }, 1000)
+
+</script>
+</body>
+</html>

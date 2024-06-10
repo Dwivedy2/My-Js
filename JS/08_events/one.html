@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style="background-color: #414141; color: aliceblue;">
+    <h2>Amazing image</h2>
+    <div >
+        <ul id="images">
+            <li><img width="200px" id="photoshop" src="https://images.pexels.com/photos/3561339/pexels-photo-3561339.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="photoshop"></li>
+            <li><img width="200px" id="japan" src="https://images.pexels.com/photos/3532553/pexels-photo-3532553.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><img width="200px" id="owl" src="https://images.pexels.com/photos/3532552/pexels-photo-3532552.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" ></li>
+            <li><img width="200px" id="prayer" src="https://images.pexels.com/photos/2522671/pexels-photo-2522671.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt=""></li>
+            <li><a style="color: aliceblue;" href="https://google.com" id="google">Google</a></li>
+        </ul>
+   </div>
+</body>
+<script>
+    let prayerClicked = false;
+    // different ways to add events on target
+    
+    // past approaches
+    // attachEvent()
+    // jQuery - on
+
+    // worst approach - <li><img width="200px" id="river" src="https://images.pexels.com/photos/3532551/pexels-photo-3532551.jpeg?auto=compress&cs=tinysrgb&w=1600&lazy=load" alt="" onclick="alert('hello')"></li>
+
+    // intermediate approach - less features
+    // document.getElementById('prayer').onclick = function() {
+    //     alert('Prayer accepted')
+    // }
+
+    // best approach till now - more features
+    document.getElementById('prayer').addEventListener('click', function(e){
+        // console.log(e);
+
+        // Study
+        // type, timestamp, defaultPrevented
+        // target, toElement, srcElement, currentTarget,
+        // clientX, clientY, screenX, screenY
+        // altkey, ctrlkey, shiftkey, keyCode
+
+        // alert('Prayer Accepted')
+        prayerClicked = true;
+    }, false)
+
+    // Event Propagation
+    // Event Bubbling - bottom to top
+    // Event Capturing - top to bottom
+
+    // Ex: Event Bubbling
+    document.getElementById('images').addEventListener('click', function(){
+        // console.log('ul clicked');
+    }, false)
+    document.getElementById('prayer').addEventListener('click', function(e){
+        // console.log('prayer clicked');
+        // if you want to stop this event propogration (bubbling)
+        // e.stopPropagation() - only prayer clicked
+    }, false)
+
+    // Clicked on Prayer Images
+    // prayer clicked
+    // ul clicked
+
+    // Ex: Event Capturing
+    document.getElementById('images').addEventListener('click', function(){
+        // console.log('ul clicked');
+    }, true)
+    document.getElementById('prayer').addEventListener('click', function(){
+        // console.log('prayer clicked');
+    }, true)
+
+    // Clicked on Prayer Images
+    // ul clicked
+    // prayer clicked
+
+    // preventDefault
+    document.getElementById('google').addEventListener('click', function(e){
+        // e.preventDefault()
+        // e.stopPropagation()
+
+        // preventDefault - interesting
+        if(!prayerClicked) {
+            e.preventDefault()
+            alert('To navigate click on prayer')
+        }
+    }, false)
+
+    // small project - click on image and it should disappear
+    // document.getElementById('photoshop').addEventListener('click', function(){
+    //     document.getElementById('photoshop').style.display = 'none'
+    // }, false)
+    // document.getElementById('japan').addEventListener('click', function(){
+    //     document.getElementById('japan').style.display = 'none'
+    // }, false)
+    // document.getElementById('river').addEventListener('click', function(){
+    //     document.getElementById('river').style.display = 'none'
+    // }, false)
+    // document.getElementById('owl').addEventListener('click', function(){
+    //     document.getElementById('owl').style.display = 'none'
+    // }, false)
+    // document.getElementById('prayer').addEventListener('click', function(){
+    //     document.getElementById('prayer').style.display = 'none'
+    // }, false)
+
+    // Or
+
+    document.querySelector('#images').addEventListener('click', function(e){
+        if (e.target.tagName === 'IMG') {
+            e.target.parentNode.remove()
+            // old method
+            // e.target.parentNode.parentNode.removeChild(e.target.parentNode)
+        }
+    })
+</script>
+</html>

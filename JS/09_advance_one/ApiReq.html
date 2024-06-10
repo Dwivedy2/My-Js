@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Api Request</title>
+    <style>
+        body{
+            background-color: #414141;
+            color: #fff;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+        .card {
+            margin: 20px;
+            width: 400px;
+            height: auto;
+            border: 1px solid #d4d3d3;
+            /* display: flex; */
+            /* gap: 40px; */
+            border-radius: 2px;
+        }
+        .info {
+            list-style: none;
+        }
+        .bio {
+            padding: 20px;
+        }
+        .fs {
+            font-size: 12px;
+        }
+        .avatar {
+            border-bottom: 1px solid #d4d3d3;
+            padding: 20px;
+        }
+        a {
+            color: #fff;
+        }
+        img {
+            width: 150px;
+            border-radius: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="state-info">
+        <ul class="info">
+            <li>0	UNSENT	Client has been created. open() not called yet.</li>
+            <li>1	OPENED	open() has been called.</li>
+            <li>2	HEADERS_RECEIVED	send() has been called, and headers and status are available.</li>
+            <li>3	LOADING	Downloading; responseText holds partial data.</li>
+            <li>4	DONE	The operation is complete.</li>
+        </ul>
+    </div>
+    <div class="card">
+        <div class="avatar"></div>
+        <div class="bio"></div>
+    </div>
+</body>
+<script>
+    // Api with xml
+    const requestUrl = 'https://api.github.com/users/hiteshchoudhary'
+    
+    const xhr = new XMLHttpRequest()
+    xhr.open('GET', requestUrl)
+    xhr.onreadystatechange = function(){
+        // this.responseText = xhr.responseText
+        // console.log(typeof xhr.responseText); // string
+        if(this.readyState == 4) {
+            let hiteshGithub = JSON.parse(xhr.responseText)
+            makeCard(hiteshGithub)
+        }
+    }
+    xhr.send()
+
+    function makeCard(hiteshGithub) {
+        const userAvatar = hiteshGithub.avatar_url
+        const bio = hiteshGithub.bio
+        const githubUrl = hiteshGithub.html_url
+        const name = hiteshGithub.name
+
+        let avatar = document.querySelector('.avatar')
+        let img = document.createElement('img')
+        img.src = userAvatar
+        avatar.appendChild(img)
+
+        let bioSection = document.querySelector('.bio')
+        let h3 = document.createElement('h3')
+        h3.innerText = name
+        bioSection.append(h3)
+
+        let ul = document.createElement('ul')
+        ul.className = 'bio fs'
+        let li1 = document.createElement('li')
+        li1.innerText = bio
+        ul.append(li1)
+        let li2 = document.createElement('li')
+        let atag = document.createElement('a')
+        atag.href = githubUrl
+        atag.innerText = githubUrl
+        li2.append(atag)
+        ul.appendChild(li2)
+        console.log(ul);
+        bioSection.append(ul)
+    }
+</script>
+</html>
