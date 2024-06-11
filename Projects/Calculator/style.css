@@ -1,54 +1,64 @@
-/* global */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* utils */
-.d-flex {
-    display: flex;
-}
-
-.gp {
-    gap: 10px;
-}
-
-/* locals */
 body {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-    background: rgb(2,0,36);
-    background: linear-gradient(30deg, rgba(2,0,36,1) 0%, rgb(100, 100, 178) 32%, rgb(144, 192, 201) 58%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
 }
 
 .container {
-    width: 80%;
-    height: 100vh;
-    margin: 0 auto;
-    padding: 20px;
+    display: flex;
     justify-content: center;
-}
-
-#screen {
+    align-items: center;
     width: 100%;
-    height: 20%;
-    padding: 20px;
-    background-color: white;
-    border-radius: 5px;
-    word-wrap: break-word;
+    max-width: 400px;
 }
 
 .calculator {
-    width: 50%;
-    padding: 10px;
-    border: 1px solid black;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+}
+
+#screen {
+    background: #222;
+    color: #fff;
+    padding: 20px;
+    font-size: 2em;
+    text-align: right;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.btn-wrapper {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 button {
-    padding: 20px 30px;
-    border: none;
-    margin: 10px;
+    flex: 1 0 33.33%;
+    padding: 20px;
+    font-size: 1.5em;
+    border: 1px solid #ccc;
     cursor: pointer;
-    border-radius: 100%;
-    font-size: 2em;
+    outline: none;
+    background: #f9f9f9;
+    transition: background 0.2s;
+}
+
+button:hover {
+    background: #e9e9e9;
+}
+
+button:active {
+    background: #ccc;
+}
+
+#ops button {
+    flex: 1 0 100%;
 }

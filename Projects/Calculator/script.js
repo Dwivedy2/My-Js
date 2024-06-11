@@ -1,32 +1,60 @@
-// global
-let display = '';
-let result = 0;
-
-// doms
-const digits = document.getElementById('digits');
-const ops = document.getElementById('ops');
-const screen = document.getElementById('screen');
-
-// event listeners
-digits.addEventListener('click', (e) => {
-    let digit = e.target.value;
-    if(digit) {
-        display += digit;
-        updateScreen(display);
+class Calculator {
+    constructor(screen) {
+        this.screen = screen;
+        this.display = '';
     }
-});
 
-ops.addEventListener('click', (e) => {
-    let op = e.target.value;
-    if(op && op != '=') {
-        display += op;
-        updateScreen(display);
-    } else if (op == '=') {
-        updateScreen(eval(display));
-        display = '';
+    appendNumber(number) {
+        if (number === '.' && this.display.includes('.')) return;
+        this.display += number;
+        this.updateScreen();
     }
-});
 
-function updateScreen(value) {
-    screen.innerHTML = value;
+    chooseOperation(operation) {
+        if (this.display === '' && operation !== '-') return;
+        if (this.display !== '') this.display += ` ${operation} `;
+        this.updateScreen();
+    }
+
+    compute() {
+        try {
+            this.display = this.display.replace(/÷/g, '/');
+            this.display = eval(this.display).toString();
+        } catch (e) {
+            this.display = 'Error';
+        }
+        this.updateScreen();
+    }
+
+    clear() {
+        this.display = '';
+        this.updateScreen();
+    }
+
+    updateScreen() {
+        this.screen.innerHTML = this.display;
+    }
 }
+
+const screen = document.getElementById('screen');
+const calculator = new Calculator(screen);
+
+document.getElementById('digits').addEventListener('click', (e) => {
+    const value = e.target.value;
+    if (value) {
+        calculator.appendNumber(value);
+    }
+});
+
+document.getElementById('ops').addEventListener('click', (e) => {
+    const value = e.target.value;
+    if (value) {
+        if (value === '=') {
+            calculator.compute();
+        } else if (value === 'C') {
+            calculator.clear();
+        } else {
+            calculator.chooseOperation(value);
+        }
+    }
+});
