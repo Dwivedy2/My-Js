@@ -13,6 +13,9 @@ const fbUser = {
     degree: "Btech",
     isLoggedIn: true,
     lastLoggedIn: ["Monday", "Saturday"],
+    greet: function() {
+        console.log(`Hello ${this["full name"]}`);
+    },
 }
 
 // console.log(fbUser);
