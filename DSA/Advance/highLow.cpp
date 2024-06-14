@@ -16,18 +16,21 @@ int main() {
         mp[arr[i]]++;
     }
 
-    int value = INT_MIN;
-    int key = -1;
+    int highValue = INT_MIN, lowVal = INT_MAX;
+    int high = -1, low = -1;
     // n
     for(auto it: mp) {
-        if(it.second > value) {
-            value = it.second;
-            key = it.first;
+        if(it.second > highValue) {
+            highValue = it.second;
+            high = it.first;
+        } else if(it.second < lowVal) {
+            low = it.first;
+            lowVal = it.second;
         }
     }
 
     // TIME COMPLEXITY: O(n)
-    cout << key << endl;
+    cout << "high: " << high << ", low: " << low << endl;
 
     return 0;
 }

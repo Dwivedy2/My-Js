@@ -8,6 +8,8 @@ void printArr(int arr[], int n) {
     cout << endl;
 }
 
+// Time Complexity: (n x (n + 1)) / 2
+// Best Case = Average Case = Worst Case = O(n^2)
 void selectionSort() {
     // CONCEPT
     // Select the minimum and swap
@@ -33,7 +35,58 @@ void selectionSort() {
     printArr(arr, n);
 }
 
+// Time Complexity: (n x (n + 1)) / 2
+// Average Case = Worst Case = O(n^2)
+// Best Case = O(n), imagine [2, 3, 4, 5]
+void bubbleSort(int a[], int n) {
+    // Concept
+    // Biggest at the last, swap adjecent if not sorted
+
+    // Ex
+    // 13, 46, 24, 52, 20, 9
+    /*
+        1st iteration
+        swap(2, 3)
+        13, 24, 46, 52, 20, 9
+        swap(4, 5)
+        13, 24, 46, 20, 52, 9
+        swap(5, 6)
+        13, 24, 46, 20, 9, 52
+        so here "52" was the largest which bubbled out at last
+
+    */
+
+    // So we will repeat above iteration several times
+    // 2nd iteration
+    // 13, 24, 20, 9, 46, 52
+    // 3rd iteration
+    // 13, 20, 9, 24, 46, 52
+    // 4th iteration
+    // 13, 9, 20, 24, 46, 52
+    // 5th iteration
+    // 9, 13, 20, 24, 46, 52
+
+    for(int i = 0; i < n-1; i++) {
+        bool didSwap = false;
+        for(int j = 0; j <= (n - i - 1); j++) {
+            if((j+1 < n) && a[j] > a[j+1]) {
+                didSwap = true;
+                swap(a[j], a[j+1]);
+            }
+        }
+        if(!didSwap) break;
+    }
+
+    printArr(a, n);
+}
+
 int main() {
-    selectionSort();
+    
+    int a[] = {13, 46, 24, 52, 20, 9};
+    int n = sizeof(a) / sizeof(a[0]);
+    
+    // selectionSort();
+    
+    bubbleSort(a, n);
     return 0;
 }
