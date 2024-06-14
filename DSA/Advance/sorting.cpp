@@ -80,6 +80,48 @@ void bubbleSort(int a[], int n) {
     printArr(a, n);
 }
 
+void insertionSort(int a[], int n) {
+    // Concept
+    // Insert the value at its right index, by comparing and swapping
+
+    // Ex
+    // 13, 46, 24, 52, 20, 9
+    
+    // should "46" be at idx "1" in array of size 2, YES
+
+    // should "24" be at idx "2" in array of size 3, NO
+    // swap until its swappable
+    // swap(24, 46): 13, 24, 46
+
+    // should "52" be at idx "3" in array of size 4, YES
+
+    // should "20" be at idx "4" in array of size 5, NO
+    // swap until its swappable
+    // swap(20, 52): 13, 24, 46, 20, 52
+    // swap(20, 46): 13, 24, 20, 46, 52
+    // swap(20, 24): 13, 20, 24, 46, 52
+    
+    // should "9" be at idx "5" in array of size 6, NO
+    // swap until its swappable
+    // swap(9, 52): 13, 24, 46, 20, 9, 52
+    // swap(9, 20): 13, 24, 46, 9, 20, 52
+    // swap(9, 46): 13, 24, 9, 46, 20, 52
+    // swap(9, 24): 13, 9, 24, 46, 20, 52
+    // swap(9, 13): 9, 13, 24, 46, 20, 52
+
+    // Logic
+    // since 1st element is always at correct position,
+    // in size of array "1"
+    for(int i = 1; i < n; i++) {
+        int j = i;
+        while(j > 0 && a[j] < a[j-1]) {
+            swap(a[j], a[j-1]);
+            j--;
+        }
+    }
+
+}
+
 int main() {
     
     int a[] = {13, 46, 24, 52, 20, 9};
@@ -87,6 +129,10 @@ int main() {
     
     // selectionSort();
     
-    bubbleSort(a, n);
+    // bubbleSort(a, n);
+
+    insertionSort(a, n);
+
+    printArr(a, n);
     return 0;
 }
