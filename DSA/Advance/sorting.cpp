@@ -80,6 +80,9 @@ void bubbleSort(int a[], int n) {
     printArr(a, n);
 }
 
+// Time Complexity
+// worst case: [5, 4, 3, 2, 1], (n * (n+1)) / 2, O(n^2)
+// best case: [1, 2, 3, 4, 5], O(n)
 void insertionSort(int a[], int n) {
     // Concept
     // Insert the value at its right index, by comparing and swapping
