@@ -125,17 +125,130 @@ void insertionSort(int a[], int n) {
 
 }
 
+void merge(int a[], int low, int mid, int high) {
+    // arr1 -> 0 to mid
+    // arr2 -> mid+1 to high
+    int mergedArr[low+high+1];
+    int i = low, j = mid+1, idx = low;
+    while(i <= mid && j <= high) {
+        if(a[i] < a[j]) {
+            mergedArr[idx] = a[i];
+            i++;
+        } else {
+            mergedArr[idx] = a[j];
+            j++;
+        }
+        idx++;
+    }
+
+    // if left is exhausted
+    while(j <= high) {
+        mergedArr[idx] = a[j];
+        idx++, j++;
+    }
+
+    // if right is exhausted
+    while (i <= mid)
+    {
+        mergedArr[idx] = a[i];
+        idx++, i++;
+    }
+
+    // copy mergedArr into our a
+    for(int i = low; i <= high; i++) {
+        a[i] = mergedArr[i];
+    }
+    
+}
+
+
+// Time Complexity
+// For dividing: n -> n/2 -> n/4 -> n/8, so O(log2(n))
+// For merging: O(l) + O(h) = O(n)
+// So TC: O(nlog2(n))
+// SC: O(n)
+void mergeSort(int a[], int low, int high) {
+    // Concept: Divide & Merge
+
+    // Ex:
+    //          [0 ,  1,  2,  3,  4, 5]
+    //          [13, 46, 24, 52, 20, 9], l = 0, h = 5, m = 2
+    //                     / \ 
+    //        [13, 46, 24]     [52, 20, 9]
+    //              / \              / \ 
+    //      [13, 46]   [24]  [52, 20]   [9]
+    //        / \               / \ 
+    //    [13]   [46]       [52]   [20]
+    
+    // MergeSort Logic:
+    // left(l, m) --- right(m+1, h)
+
+    // Here l = 0, h = 5, m = 2, array is divided into "2" parts from Sort(0, 2) & Sort(3, 5)
+    // left: l = 0, h = 2, m = 1, Sort(0, 1) & Sort(2, 2)
+    // left: l = 0, h = 1, m = 0, Sort(0, 0) & Sort(1, 1)
+    // Sort(0, 0) -> return, l == h
+    // Sort(1, 1) -> return, l == h
+    // Sort(0, 1) -> Merge(Sort(0, 0), Sort(1, 1))
+    // Sort(2, 2) -> return, l == h
+    // Sort(0, 2) -> Merge(Sort(0, 1), Sort(0, 2))
+
+    // Left is sorted go to right
+    // right: l = 3, h = 5, m = 4, Sort(3, 4) & Sort(5, 5)
+    // right: l = 3, h = 4, m = 3, Sort(3, 3) & Sort(4, 4)
+    // Sort(3, 3) -> return, l == h
+    // Sort(4, 4) -> return, l == h
+    // Sort(3, 4) -> Merge(Sort(3, 3), Sort(4, 4))
+    // Sort(5, 5) -> return, l == h
+    // Sort(3, 5) -> Merge(Sort(3, 4), Sort(5, 5))
+
+    // Now as Left & Right are sorted and merge so final merge
+    // Sort(0, 5) -> Merge(Sort(0, 2), Sort(3, 5))
+    
+    // since single elements are already sorted, so return back and merge them
+    //                      [13]    [46]     [52]    [20]
+    //                          \  /             \  /
+    //                   [13, 46]  [24]   [20, 52]  [9]
+    //                           \/              \  /
+    //                      [13, 24, 46]     [9, 20, 52]
+    //                                    \/ 
+    //                         [9, 13, 20, 24, 46, 52]
+
+    // Merge logic: as we know for both sorted array smallest lies at low
+    // so for left low is "13" & for right low is "9"
+    // now compare "13" & "9", since "9" is small so insert "9" and move pointer to right of "9"
+    // now compare "13" & "20", since "13" is small so insert "13" and move pointer to right of "13"
+    // now compare "24" & "20", since "20" is small so insert "20" and move pointer to right of "20"
+    // now compare "24" & "52", since "24" is small so insert "24" and move pointer to right of "24"
+    // now compare "46" & "52", since "46" is small so insert "46" and move pointer to right of "46"
+    // now since first array is completed so insert all elements of right
+    // [9, 13, 20, 24, 46, 52]
+
+    // BASE CONDITION
+    if(low >= high) return;
+
+    int mid = (low + high) / 2;
+    mergeSort(a, low, mid);
+    mergeSort(a, mid+1, high);
+    merge(a, low, mid, high);
+}
+
 int main() {
     
-    int a[] = {13, 46, 24, 52, 20, 9};
+    // int a[] = {13, 46, 24, 52, 20, 9};
+    // int a[] = {3, 2, 4, 1, 3};
+    int a[] = {42, 7, 19, 85, 23, 4, 77, 13, 60, 31, 7, 42, 13};
     int n = sizeof(a) / sizeof(a[0]);
     
     // selectionSort();
     
     // bubbleSort(a, n);
 
-    insertionSort(a, n);
+    // insertionSort(a, n);
+
+    int low = 0, high = n-1;
+    mergeSort(a, low, high);
 
     printArr(a, n);
+    
     return 0;
 }
