@@ -232,6 +232,100 @@ void mergeSort(int a[], int low, int high) {
     merge(a, low, mid, high);
 }
 
+int partition(int a[], int low, int high) {
+    int pivot = a[low];
+    int i = low, j = high;
+    
+    while(i < j) {
+        // returns first element greater than pivot
+        while(a[i] <= pivot && i < high) { 
+            i++; 
+        }
+
+        // returns first element greater than pivot
+        while(a[j] > pivot && j > low) { 
+            j--; 
+        }
+
+        if(i < j) swap(a[i], a[j]);
+    }
+    // i > j
+    swap(a[low], a[j]);
+
+    return j;
+}
+
+void quickSort(int a[], int low, int high) {
+    // Concept: Place pivot at its correct position,
+    //          and move smaller to left and larger to right
+
+    // Ex
+    // a = [4, 6, 2, 5, 7, 9, 1, 3];
+    // let suppose pivot is first element
+    // so pivot = 4
+
+    // How to place pivot at its correct postition ?
+
+    // now take i at 4 and j at 3
+    // so we have to find first element which is greater than the pivot
+
+    // [4, 6, 2, 5, 7, 9, 1, 3]
+    // [p, ...             , j]
+
+    // so 6 > 4, found first element greater than the pivot
+    // now start from j and find first elemet smaller than the pivot
+
+    // so found 3 is the smaller than pivot,
+    // swap(6, 3)
+
+    // [4, 3, 2, 5, 7, 9, 1, 6]
+    // [p, i, ...       ,  , j]
+
+    // again repeat above steps
+
+    // so now this time 5 > 4 found first element greater than 13
+    // now find first element smaller than pivot start from j
+    // so found 1 < 4
+    // swap(5, 1)
+
+    // [4, 3, 2, 1, 7, 9, 5, 6]
+    // [p,  ,    i,       j,  ]
+
+    // now again find first element greater than pivot start from i
+    // found 7
+    // now again find first element smaller than pivot start from j
+    // found 1
+    // but now j < i
+
+    // don't swap
+    // just swap jth element with pivot
+
+    // [4, 3, 2, 1, 7, 9, 5, 6]
+    // [p,  ,    j, i,        ]
+
+    // swap(4, 1)
+
+    // [1, 3, 2, 4, 7, 9, 5, 6]
+
+    // now as you can see that all the element left of 4 is smaller than 4
+    // and all the elements right of 4 are greater than 4
+
+    // now repeat the above steps for the left part and right part
+    // [1, 3, 2] & [7, 9, 5, 6]
+
+    // make same pivot and place at its right position
+
+    // Base Condition
+    // Single element is already sorted
+    if(low < high) {
+        int pIndex = partition(a, low, high);
+
+        // Divide
+        quickSort(a, low, pIndex - 1);
+        quickSort(a, pIndex + 1, high);
+    }
+}
+
 int main() {
     
     // int a[] = {13, 46, 24, 52, 20, 9};
@@ -246,7 +340,9 @@ int main() {
     // insertionSort(a, n);
 
     int low = 0, high = n-1;
-    mergeSort(a, low, high);
+    // mergeSort(a, low, high);
+
+    quickSort(a, low, high);
 
     printArr(a, n);
     
