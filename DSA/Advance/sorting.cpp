@@ -321,7 +321,9 @@ void quickSort(int a[], int low, int high) {
         int pIndex = partition(a, low, high);
 
         // Divide
+        // left array
         quickSort(a, low, pIndex - 1);
+        // right array
         quickSort(a, pIndex + 1, high);
     }
 }
