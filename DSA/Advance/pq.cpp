@@ -1,20 +1,25 @@
 #include<bits/stdc++.h>
 using namespace std;
 
+#pragma region, printVector
 void printVector(vector<int> v) {
     for(auto it: v) {
         cout << it << " ";
     }
     cout << endl;
 }
+#pragma endregion
 
+#pragma region, printArray
 void printArray(int arr[], int n) {
     for(int i = 0; i < n; i++) {
         cout << arr[i] << " " ;
     }
     cout << endl;
 }
+#pragma endregion
 
+#pragma region, removeDuplicates
 void removeDuplicates(vector<int>& nums) {
 
     // brute force
@@ -38,7 +43,9 @@ void removeDuplicates(vector<int>& nums) {
     }
     nums.erase(nums.begin()+j, nums.end());
 }
+#pragma endregion
 
+#pragma region, rotate
 void rotate(vector<int>& nums, int k) {
     // brute force
     /*
@@ -64,7 +71,9 @@ void rotate(vector<int>& nums, int k) {
     reverse(nums.begin(), nums.end());
     
 }
+#pragma endregion
 
+#pragma region, SecondLargest
 int SecondLargest(int a[], int n) {
     // TC: O(2n)
     // sC: O(1)
@@ -93,7 +102,9 @@ int SecondLargest(int a[], int n) {
     }
     return sLargest;
 }
+#pragma endregion
 
+#pragma region, rightRotateByK
 void rightRotateByK(int nums[], int n, int k) {
     // 1 2 3 4 5 6 7
     
@@ -141,7 +152,9 @@ void rightRotateByK(int nums[], int n, int k) {
         swap(nums[i], nums[n - i - 1]);
     }
 }
+#pragma endregion
 
+#pragma region, moveZerosToRight
 void moveZerosToRight(int nums[], int n) {
     // Brute force, O(n^2)
     // 1. bubble out zeros
@@ -203,6 +216,26 @@ void moveZerosToRight(int nums[], int n) {
     }
 
 }
+#pragma endregion
+
+#pragma region, findMaxConsecutiveOnes
+int findMaxConsecutiveOnes(int nums[], int n) {
+    int max1 = 0;
+    int prevMax1 = -1;
+
+    for(int i = 0; i < n; i++) {
+        if(nums[i]) max1++;
+        else {
+            prevMax1 = max1 > prevMax1 ? max1 : prevMax1;
+            max1 = 0;
+        }
+    }
+
+    max1 = max1 > prevMax1 ? max1 : prevMax1;
+
+    return max1;
+}
+#pragma endregion
 
 int main() {
 
@@ -227,13 +260,25 @@ int main() {
     // rightRotateByK(nums, n, k);
     // printArray(nums, n);
     
+#pragma region, Move Zeros To Right
     // move zeros to right
     // int nums[] = {1, 0, 2, 3, 2, 0, 0, 4, 5, 1};
     // int n = sizeof(nums) / sizeof(nums[0]);
 
     // moveZerosToRight(nums, n);
-
     // printArray(nums, n);
+#pragma endregion
+
+#pragma region, Max Consecutive Ones
+    // output : 3
+    int nums[] = {1,1,0,1,1,1};
+    int n = sizeof(nums) / sizeof(nums[0]);
+
+    int result = findMaxConsecutiveOnes(nums, n);
+
+    cout << result << endl;
+#pragma endregion
+
 
     return 0;
 }
