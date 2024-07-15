@@ -270,6 +270,8 @@ vector<int> unionOfArr(int a[], int n, int b[], int m) {
 */
 
     // 2. Optimal approach, 2 pointer as we are given sorted arrays
+    // TC: O(n + m)
+    // SC: O(n + m)
     int i = 0; // pointer for a[]
     int j = 0; // pointer for b[]
     int k = 0; // index for res
@@ -304,6 +306,59 @@ vector<int> unionOfArr(int a[], int n, int b[], int m) {
 
     return res;
 }
+#pragma endregion
+
+#pragma region, Intersection of 2 sorted arrays
+
+vector<int> intersectionArr(int ar1[], int n1, int ar2[], int n2) {
+    // Brute force
+    // TC: O(n1 x n2)
+    // SC: O(n2) + O(n2)
+    
+    // extra space
+    // int vis[n2]; 
+    // fill(vis, vis + n2, 0);
+    // vector<int> res;
+
+    // // {1, 1, 2, 3, 4, 4, 5}
+    // // {2, 3, 4, 4, 5, 6}
+
+    // for(int i = 0; i < n1; i++) {
+    //     for(int j = 0; j < n2; j++) {
+    //         if(ar1[i] == ar2[j] && vis[j] == 0) {
+    //             res.push_back(ar2[j]);
+    //             vis[j] = 1;
+    //             break;
+    //         } else if(ar1[i] < ar2[j]) {
+    //             break;
+    //         }
+    //     }
+    // }
+
+    // TC: O(n1)
+    // SC: (n1), worst case size, n1 = n2
+    vector<int> result;
+
+    int i = 0,
+        j = 0,
+        rIdx = 0;
+    
+    while(i < n1 && j < n2) {
+        if(ar1[i] == ar2[j]) {
+            result.push_back(ar1[i]);
+            i++;
+            j++;
+        } else if(ar1[i] < ar2[j]) {
+            i++;
+        }
+        else {
+            j++;
+        }
+    }
+
+    return result;
+}
+
 #pragma endregion
 
 int main() {
@@ -366,17 +421,32 @@ int main() {
 #pragma endregion
 
 #pragma region, Union of 2 sorted arrays
-    int ar1[] = {1, 1, 2, 3, 4, 5};
+    // expected output: {1, 2, 3, 4, 5}
+
+    // int ar1[] = {1, 1, 2, 3, 4, 5};
+    // int n1 = sizeof(ar1) / sizeof(ar1[0]);
+
+    // int ar2[] = {2, 3, 4, 4, 5, 6};
+    // int n2 = sizeof(ar2) / sizeof(ar2[0]);
+
+    // vector<int> result;
+    // result = unionOfArr(ar1, n1, ar2, n2);
+
+    // printVector(result);
+
+#pragma endregion
+    
+#pragma region, Intersection of 2 sorted arrays
+    // expected output : {2, 3, 4, 4, 5}
+
+    int ar1[] = {1, 1, 2, 3, 4, 4, 5};
     int n1 = sizeof(ar1) / sizeof(ar1[0]);
 
     int ar2[] = {2, 3, 4, 4, 5, 6};
     int n2 = sizeof(ar2) / sizeof(ar2[0]);
 
-    vector<int> result;
-    result = unionOfArr(ar1, n1, ar2, n2);
-
+    vector<int> result = intersectionArr(ar1, n1, ar2, n2);
     printVector(result);
-
 #pragma endregion
     return 0;
 }
