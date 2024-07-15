@@ -237,28 +237,105 @@ int findMaxConsecutiveOnes(int nums[], int n) {
 }
 #pragma endregion
 
+#pragma region, singleNumber
+int singleNumber(int nums[], int n) {
+    // approach: n ^ n = 0, n ^ 0 = n
+    int ans=0;
+    for(int i = 0; i < n; i++) {
+        ans=ans^nums[i];
+    }
+    return ans;
+}
+#pragma endregion
+
+#pragma region, Union of 2 sorted arrays
+vector<int> unionOfArr(int a[], int n, int b[], int m) {
+    // 1. Brute force
+    // TC: O(nlogy + mlogy) + O(n + m),  y is the size of set
+    // SC: O(n + m) + O(n + m), where 2nd complexity is of the vector returning
+    vector<int> res;
+/*
+    set<int> uni;
+    for(int i = 0; i < n; i++) {
+        uni.insert(a[i]);
+    }
+
+    for(int i = 0; i < m; i++) {
+        uni.insert(b[i]);
+    }
+
+    for(int s: uni) {
+        res.push_back(s);
+    }
+*/
+
+    // 2. Optimal approach, 2 pointer as we are given sorted arrays
+    int i = 0; // pointer for a[]
+    int j = 0; // pointer for b[]
+    int k = 0; // index for res
+
+    // loop on a and b, we also know they are sorted
+    while(i < n && j < m) {
+        // we have to check, in which array there is a smaller element
+        // we will put smaller and move next, but check once that smaller
+        // element should not be present in the resultant
+        if(a[i] <= b[j]) {
+            if( res.size() == 0 || 
+                res.back() != a[i] ) {
+                res.push_back(a[i]);
+            } 
+            i++;
+        } else if(  res.size() == 0 || 
+                    res.back() != b[j] ) {
+                res.push_back(b[j]);
+        }
+        j++;
+    }
+
+    // if any of the array get exhausted 
+    while(i < n) { 
+        if(res.back() != a[i]) res.push_back(a[i++]); 
+        else i++;
+    }
+    while(j < m) {
+        if(res.back() != b[j]) res.push_back(b[j++]);
+        else j++;
+    }
+
+    return res;
+}
+#pragma endregion
+
 int main() {
 
+#pragma region, removeDuplicates
     // vector<int> v = {0,0,1,1,1,2,2,3,3,4};
     // removeDuplicates(v);
     // printVector(v);
     // cout << v.size() << endl;
+#pragma endregion
 
+#pragma region, rotate
     // vector<int> n = {-1,-100,3,99};
     // int k = 2;
     // rotate(n, k);
     // printVector(n);
+#pragma endregion
 
+#pragma region, SecondLargest
     // int a[] = {1, 2, 4, 7, 7, 5};
     // int n = sizeof(a) / sizeof(a[0]);
     // int secondLargest = SecondLargest(a, n);
     // cout << secondLargest << endl;
+#pragma endregion
 
+#pragma region, rightRotateByK
     // int nums[] = {1, 2, 3, 4, 5, 6, 7};
     // int n = sizeof(nums) / sizeof(nums[0]);
     // int k = 3;
     // rightRotateByK(nums, n, k);
     // printArray(nums, n);
+#pragma endregion
     
 #pragma region, Move Zeros To Right
     // move zeros to right
@@ -271,14 +348,35 @@ int main() {
 
 #pragma region, Max Consecutive Ones
     // output : 3
-    int nums[] = {1,1,0,1,1,1};
-    int n = sizeof(nums) / sizeof(nums[0]);
+    // int nums[] = {1,1,0,1,1,1};
+    // int n = sizeof(nums) / sizeof(nums[0]);
 
-    int result = findMaxConsecutiveOnes(nums, n);
+    // int result = findMaxConsecutiveOnes(nums, n);
 
-    cout << result << endl;
+    // cout << result << endl;
 #pragma endregion
 
+#pragma region, Single Number
+    // output: 4, as rest are duplicates
+    // int nums[] = {4,1,2,1,2};
+    // int n = sizeof(nums) / sizeof(nums[0]);
 
+    // int ans = singleNumber(nums, n);
+    // cout << ans << endl;
+#pragma endregion
+
+#pragma region, Union of 2 sorted arrays
+    int ar1[] = {1, 1, 2, 3, 4, 5};
+    int n1 = sizeof(ar1) / sizeof(ar1[0]);
+
+    int ar2[] = {2, 3, 4, 4, 5, 6};
+    int n2 = sizeof(ar2) / sizeof(ar2[0]);
+
+    vector<int> result;
+    result = unionOfArr(ar1, n1, ar2, n2);
+
+    printVector(result);
+
+#pragma endregion
     return 0;
 }
