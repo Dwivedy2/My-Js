@@ -78,3 +78,65 @@ bringMyPhone((myPhone) => {
         })
     })
 });
+
+// Example 2
+
+function getUsername(usernameCallback) {
+    setTimeout(() => {
+        let username = "";
+        // api call
+        username = "Omkareshwar";
+        // return api result
+        usernameCallback(username);
+    }, 2000);
+    // return username;
+}
+
+function getRoles(username, rolesCallback) {
+    // if this is done thrugh backend
+    setTimeout(() => {
+        let role = ""
+        // api call 
+        if(username == "Omkareshwar") {
+            role = "SuperAdmin";
+        } else {
+            role = "Admin";
+        }
+        // return api result
+        rolesCallback(role);
+    }, 2000);
+}
+
+function getRolewiseCustomer(role, customerCallback) {
+    setTimeout(() => {
+        let customer = "";
+        // api call
+        if(role == "SuperAdmin") {
+            customer = "Admins";
+        } else {
+            customer = "App Users";
+        }
+        // return api result
+        customerCallback(customer);
+    }, 2000);
+}
+
+// calling apis back and forth
+
+getUsername((rUsername) => {
+    // get roles on the basis of users
+    getRoles(rUsername, (rRole) => {
+        // get customers on the basis of roles
+        getRolewiseCustomer(rRole, (rCustomer) => {
+            console.log(`Username: ${rUsername}, \nRole: ${rRole}, \nManage Customer: ${rCustomer}`);
+        });
+    });
+})
+
+// OUTPUT: 
+/*
+    Username: Omkareshwar, 
+    Role: SuperAdmin, 
+    Manage Customer: Admins
+
+*/
