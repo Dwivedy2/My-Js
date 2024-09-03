@@ -328,11 +328,42 @@ void quickSort(int a[], int low, int high) {
     }
 }
 
+int getPartitionIndex(int arr[], int low, int high) {
+    int pivot = low,
+        i = low + 1,
+        j = high;
+
+    while(i <= j) {
+        if(arr[i] < arr[pivot]) {
+            i++;
+            continue;
+        }
+        else if(arr[j] > arr[pivot]) {
+            j--;
+            continue;
+        }
+        else swap(arr[i], arr[j]);
+    }
+
+    swap(arr[pivot], arr[j]);
+
+    return j;
+}
+
+void quSort(int arr[], int low, int high) {
+    if(low >= high) return;
+
+    int pIndex = getPartitionIndex(arr, low, high);
+    quSort(arr, low, pIndex - 1);
+    quSort(arr, pIndex + 1, high);
+}
+
 int main() {
     
     // int a[] = {13, 46, 24, 52, 20, 9};
     // int a[] = {3, 2, 4, 1, 3};
-    int a[] = {42, 7, 19, 85, 23, 4, 77, 13, 60, 31, 7, 42, 13};
+    // int a[] = {42, 7, 19, 85, 23, 4, 77, 13, 60, 31, 7, 42, 13};
+    int a[] = {4, 6, 2, 5, 7, 9, 1, 3};
     int n = sizeof(a) / sizeof(a[0]);
     
     // selectionSort();
@@ -344,7 +375,9 @@ int main() {
     int low = 0, high = n-1;
     // mergeSort(a, low, high);
 
-    quickSort(a, low, high);
+    // quickSort(a, low, high);
+
+    quSort(a, low, high);
 
     printArr(a, n);
     
