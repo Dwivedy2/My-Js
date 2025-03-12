@@ -1,0 +1,7 @@
+.success {
+    background-color: rgb(110, 232, 110);
+    width: 70%;
+    text-align: center;
+    padding: 1em;
+    margin: 0.5em 0;
+}
