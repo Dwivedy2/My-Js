@@ -1,7 +1,23 @@
 <h1>{{ title }} Counter</h1>
-<input type="number" placeholder="your daily step goal" (input)="takeInput($event.target)">
-<div>Current Step : {{ step() }}</div>
-<div>Your Progress : {{ progress() }}%</div>
-<!-- <div class="success" [@if]="progress() === 100">Congratulations on completing your daily steps! Keep the spirit high!</div> -->
-<button style="padding: 3px 5px; border-radius: 4px; background: none;" (click)="resetStep()">Reset Step</button>
-<button style="padding: 3px 5px; border-radius: 4px; background: none;" (click)="increaseStep()">One Step</button>
+<button (click)="registerUser()" *ngIf="!isUserRegistered()">Register youself first</button>
+@if(isUserRegistered()) {
+    <div class="wrapper">
+        <div class="success" *ngIf="showInitialMessage()">🎉 Congratulations you are registered now 🎉 <span class="crossbtn" (click)="showInitialMessage.set(false)"> x </span></div>
+        <div class="success" *ngIf="showCompletionMessage()">🎉 Congratulations you have completed your daily goal 🎉 <span class="crossbtn" (click)="showCompletionMessage.set(false)"> x </span></div>
+
+        <div>
+            <input type="number" placeholder="your daily step goal" (input)="takeInput($event.target)">
+            <button (click)="setGoal()">Set Goal</button>
+            <div *ngIf="isGoalSet()">Your Target : {{ dailyStepGoal() }}</div>
+            <div>Current Step : {{ step() }}</div>
+            <div>Your Progress : {{ progress() }}%</div>
+            <button [disabled]="!isGoalSet()" style="padding: 3px 5px; border-radius: 4px; background: none;" (click)="resetStep()">Reset Step</button>
+            <button [disabled]="!isGoalSet()" style="padding: 3px 5px; border-radius: 4px; background: none;" (click)="increaseStep()">One Step</button>
+        </div>
+        
+        <div>Your Previous Targets</div>
+        <div *ngFor="let target of dailyTargets; index as i" style="margin: 5px;">
+            Day - {{i+1}} : {{ target }}
+        </div>
+    </div>
+}

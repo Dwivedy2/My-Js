@@ -1,7 +1,18 @@
+.wrapper {
+    width: 400px;
+}
+
 .success {
     background-color: rgb(110, 232, 110);
-    width: 70%;
-    text-align: center;
     padding: 1em;
     margin: 0.5em 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.crossbtn {
+    border: 1px solid;
+    border-radius: 3px;
+    padding: 0px 6px;
+    cursor: pointer;
 }
