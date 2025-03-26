@@ -17,7 +17,7 @@
 
             document
                 .querySelector('button')
-                .addEventListener('click', this.onClick().bind(this))
+                .addEventListener('click', this.onClick.bind(this))
         }
 
         onClick() {
