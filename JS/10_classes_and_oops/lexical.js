@@ -1,4 +1,4 @@
-// closure means, child function has access to parent function properties
+// Lexical Scoping means, child function has access to parent function properties
 // example
 function parent() {
     // property
@@ -19,7 +19,7 @@ function parent() {
     }
 
     baby1();
-    baby2();
+    // baby2();
 }
 
 parent();
