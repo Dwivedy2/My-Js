@@ -22,4 +22,17 @@ function parent() {
     // baby2();
 }
 
-parent();
+// parent();
+
+
+// closures
+function getHashColour(color) {
+    return function() {
+        // since has lexical scoping, access to parent which is "color"
+        return `${color}Red`;
+    }
+}
+
+let hashedColor = getHashColour("Orange")
+let newColor = hashedColor();
+console.log(newColor);
