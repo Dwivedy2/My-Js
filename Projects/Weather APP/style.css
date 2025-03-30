@@ -1,0 +1,67 @@
+/* utility classes */
+.d-flex {
+    display: flex;
+    justify-content: center;
+}
+
+.space-between {
+    justify-content: space-between;
+}
+
+.w-80 {
+    width: 80%;
+}
+
+
+/* main classes */
+h1, p {
+    text-align: center;
+}
+
+body {
+    padding: 0;
+    margin: 0;
+    background-color: rgba(46, 48, 48, 0.973);
+    color: white;
+}
+
+#location {
+    font-weight: bold;
+    margin: 20px 0;
+}
+
+.main-box {
+    width: 550px;
+    height: 350px;
+    border: 4px solid #608094;
+    background: #16394c;
+    border-radius: 10px;
+}
+
+.info-board, .details-board {
+    margin: 0 auto;
+}
+
+.other-info-detail {
+    margin: 0;
+    font-size: 0.9em;
+    font-weight: 200;
+    text-align: start;
+}
+
+.info-board {
+    align-items: center;
+}
+
+.logo-section {
+    text-align: center;
+}
+
+#imgDescription {
+    font-weight: bold;
+    margin: 0;
+}
+
+.temp {
+    font-size: 3em;
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Weather App</h1>
+    <div id="app" class="container d-flex">
+        <div class="main-box">
+            <p id="location"></p>
+            <div class="info-board d-flex space-between w-80 mt">
+                <div class="logo-section">
+                    <img id="image" src="" alt="">
+                    <p id="imgDescription"></p>
+                </div>
+                <p class="temp"><span id="temprature"></span><span><sup>o</sup>c</span></p>
+                <div class="other-info">
+                    <p class="other-info-detail">Wind: <span id="wind"></span> kmph</p>
+                    <p class="other-info-detail">Precip: <span id="precip"></span> mm</p>
+                    <p class="other-info-detail">Pressure: <span id="pressure"></span> mb</p>
+                    <p class="other-info-detail">Humidity: <span id="humidity"></span>%</p>
+                </div>
+            </div>
+            <div class="details-board d-flex space-between w-80 mt">
+                <div>
+                    <p id="astro-sunrise-text">Sunrise</p>
+                    <p id="astro-sunrise-time"></p>
+                </div>
+                <div>
+                    <p id="astro-sunset-text">Sunset</p>
+                    <p id="astro-sunset-time"></p>
+                </div>
+                <div>
+                    <p id="astro-moonrise-text">Moonrise</p>
+                    <p id="astro-moonrise-time"></p>
+                </div>
+                <div>
+                    <p id="astro-moonset-text">Moonset</p>
+                    <p id="astro-moonset-time"></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+<script src="optional.js"></script>
+</html>
