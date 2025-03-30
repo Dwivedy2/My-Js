@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Todo App</h1>
+    <div class="add-item">
+        <label for="todo-item">Title: </label>
+        <input id="todo-item" type="text" placeholder="Add Your Item">
+        <button id="add">Add</button>
+    </div>
+    <div class="container d-flex">
+        <div class="bars todo">
+            <div class="heading">
+                Todo Items
+            </div>
+            <div id="todo-items" class="items">
+                
+            </div>
+        </div>
+        <div class="bars progress">
+            <div class="heading">
+                In Progress
+            </div>
+            <div id="progress-items" class="items">
+                
+            </div>
+        </div>
+        <div class="bars done">
+            <div class="heading">
+                Done
+            </div>
+            <div id="done-items" class="items">
+                
+            </div>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
