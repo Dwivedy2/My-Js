@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/Projects/CommonStyles/common.css">
+</head>
+<body class="bg-dark color-white">
+    <div id="containerDisplay" class="container">
+        <h1 class="text-center">Expense Tracker</h1>
+        <div id="alertBox" class="d-none d-flex space-between w-80 mg-auto p-10 align-center box-border border-radius-5">
+            <p id="alertText" class="m-1">Hello</p>
+            <button id="alertCrossBtn" class="h-25 m-1">x</button>
+        </div>
+        <div class="main-box w-80 mg-auto">
+            <div class="income-box d-flex space-between align-center">
+                <div class="total-balance">
+                    <p>Total Balance</p>
+                    <p>₹ <span id="totalBalance"></span></p>
+                </div>
+                <div class="add-income">
+                    <input disabled id="incomeInp" class="p-5" type="text" placeholder="Add your income here...">
+                    <input disabled class="p-5" id="addIncomeBtn" type="submit" value="Add Income">
+                </div>
+            </div>
+            <div class="transaction-box">
+                <p><span>Expenses: </span>₹ <span id="expenseBox"></span></p>
+                <p><span>Income: </span>₹ <span id="incomeBox"></span></p>
+            </div>
+            <div class="transaction-history">
+                <button class="p-5 mb-10 float-right" id="addTransactionBtn">Add Transaction</button>
+                <table class="w-100 scroll-y">
+                    <thead>
+                        <tr>
+                            <th class="text-start">Category</th>
+                            <th class="text-start">Amount</th>
+                            <th class="text-start">Type</th>
+                            <th class="text-start">Date</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionBody">
+                        
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div id="containerForm" class="d-none container-form mg-auto p-10 w-30 border border-radius-10">
+        <div class="text-end">
+            <button id="crossBtn">x</button>
+        </div>
+        <form>
+            <div class="p-10">
+                <label for="amount">Amount</label>
+                <input class="p-5" type="text" id="amount" name="amount" value="0">
+            </div>
+            <div class="p-10">
+                <label for="date">Date</label>
+                <input class="p-5" type="date" id="date" name="date" value="2025-03-31">
+            </div>
+            <div class="p-10">
+                <label for="category">Choose Category</label>
+                <select class="p-5" name="category" id="category">
+                    <option id="0" value="0">Food</option>
+                    <option id="1" value="1">Rent</option>
+                    <option id="2" value="2">Salary</option>
+                    <option id="3" value="3">Shopping</option>
+                    <option id="4" value="4">Miscellenious</option>
+                </select>
+            </div>
+            <div class="transaction-type p-10">
+                <label for="transactionType">Choose Transaction Type</label>
+                <div class="mt-10">
+                    <input type="radio" name="transactionType" id="radioExp" value="0" checked>
+                    <label for="radioExp">Expense</label>
+                    <input type="radio" name="transactionType" id="radioInc" value="1">
+                    <label for="radioSal">Income</label>
+                </div>
+            </div>
+            <input id="transactionSubmit" class="p-5 mt-10 w-100" type="submit" value="Add Transaction">
+          </form> 
+    </div>
+</body>
+<script src="script.js"></script>
+<script src="enums.js"></script>
+</html>

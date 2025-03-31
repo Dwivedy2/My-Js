@@ -1,0 +1,20 @@
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+.container-form {
+    position: absolute;
+    top: 30%;
+    left: 35%;
+    background-color: #2e3031;
+}
+
+.blur {
+    filter: blur(15px);
+}
+
+.scroll-y {
+    overflow-y: scroll;
+}
