@@ -5,7 +5,19 @@ function App() {
   const [counter, setCounter] = useState(0);
 
   function incCounter() {
+    // not work
     setCounter(counter + 1);
+    setCounter(counter + 1);
+    setCounter(counter + 1);
+    setCounter(counter + 1);
+    // the above will not increase counter by 4, as fiber sent item into batches
+
+    // will work
+    setCounter(prevCounter => prevCounter + 1)
+    setCounter(prevCounter => prevCounter + 1)
+    setCounter(prevCounter => prevCounter + 1)
+    setCounter(prevCounter => prevCounter + 1)
+    // setCounter accepts the callback and gives previously set counter
   }
 
   const notes = [
