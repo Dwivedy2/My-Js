@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Button from './components/Button'
 import './App.css'
 
-function App({ body }) {
+function App() {
   const [color, setColor] = useState('olive')
 
   const colorList = ['red', 'green', 'blue', 'olive', 'gray', 'yellow', 'pink', 'purple', 'lavender', 'white', 'black'];
